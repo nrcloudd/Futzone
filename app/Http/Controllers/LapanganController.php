@@ -22,7 +22,7 @@ class LapanganController extends Controller
         $lapangans = Lapangan::latest()->paginate(5);
 
         //return collection of posts as a resource
-        return new PostResource(true, 'List Data Posts', $lapangans);
+        return new LapanganResource(true, 'List Data Posts', $lapangans);
     }
     
     /**
