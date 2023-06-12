@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Lapangan;
+use App\Models\Employee;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\LapanganResource;
+use App\Http\Resources\EmployeeResource;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
-class LapanganController extends Controller
+class EmployeeController extends Controller
 {
     /**
      * index
@@ -20,10 +20,10 @@ class LapanganController extends Controller
     public function index()
     {
         //get posts
-        $lapangans = Lapangan::latest()->paginate(5);
+        $employees = Employee::latest()->paginate(5);
 
         //return collection of posts as a resource
-        return new LapanganResource(true, 'List Data Posts', $lapangans);
+        return new EmployeeResource(true, 'List Data Posts', $employees);
     }
 
     /**
@@ -36,10 +36,10 @@ class LapanganController extends Controller
     {
         //define validation rules
         $validator = Validator::make($request->all(), [
-            'namaLapangan' => 'required',
-            'tipeLapangan' => 'required',
-            'priceSiang' => 'required',
-            'priceMalam' => 'required',
+            'namaEmploy' => 'required',
+            'emailEmploy' => 'required',
+            'passEmploy' => 'required',
+            'level' => 'required',
             //'image'     => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
@@ -53,16 +53,16 @@ class LapanganController extends Controller
         //$image->storeAs('public/posts', $image->hashName());
 
         //create post
-        $lapangan = Lapangan::create([
-            'namaLapangan' => $request->namaLapangan,
-            'tipeLapangan' => $request->tipeLapangan,
-            'priceSiang' => $request->priceSiang,
-            'priceMalam' => $request->priceMalam,
+        $employee = Employee::create([
+            'namaEmploy' => $request->namaEmploy,
+            'emailEmploy' => $request->emailEmploy,
+            'passEmploy' => $request->passEmploy,
+            'level' => $request->level,
             //'image'     => $image->hashName(),
         ]);
 
         //return response
-        return new LapanganResource(true, 'Data Post Berhasil Ditambahkan!', $lapangan);
+        return new EmployeeResource(true, 'Data Post Berhasil Ditambahkan!', $employee);
     }
 
     /**
@@ -71,10 +71,10 @@ class LapanganController extends Controller
      * @param  mixed $lapangan
      * @return void
      */
-    public function show(Lapangan $lapangan)
+    public function show(Employee $employee)
     {
         //return single post as a resource
-        return new LapanganResource(true, 'Data Post Ditemukan!', $lapangan);
+        return new EmployeeResource(true, 'Data Post Ditemukan!', $employee);
     }
 
     /**
@@ -137,27 +137,27 @@ class LapanganController extends Controller
 
     public function update(Request $request, $id)
     {
-        $lapangan = Lapangan::findOrFail($id);
+        $employee = Employee::findOrFail($id);
 
-        if ($request->has('namaLapangan')) {
-            $lapangan->namaLapangan = $request->input('namaLapangan');
+        if ($request->has('namaEmploy')) {
+            $employee->namaEmploy = $request->input('namaEmploy');
         }
 
-        if ($request->has('tipeLapangan')) {
-            $lapangan->tipeLapangan = $request->input('tipeLapangan');
+        if ($request->has('emailEmploy')) {
+            $employee->emailEmploy = $request->input('emailEmploy');
         }
 
-        if ($request->has('priceSiang')) {
-            $lapangan->priceSiang = $request->input('priceSiang');
+        if ($request->has('passEmploy')) {
+            $employee->passEmploy = $request->input('passEmploy');
         }
 
-        if ($request->has('priceMalam')) {
-            $lapangan->priceMalam = $request->input('priceMalam');
+        if ($request->has('level')) {
+            $employee->level = $request->input('level');
         }
 
-        $lapangan->save();
+        $employee->save();
 
-        return response()->json($lapangan);
+        return response()->json($employee);
     }
     /**
      * destroy
@@ -165,15 +165,15 @@ class LapanganController extends Controller
      * @param  mixed $lapangan
      * @return void
      */
-    public function destroy(Lapangan $lapangan)
+    public function destroy(Employee $employee)
     {
         //delete image
         //Storage::delete('public/posts/' . $lapangan->image);
 
         //delete post
-        $lapangan->delete();
+        $employee->delete();
 
         //return response
-        return new LapanganResource(true, 'Data Post Berhasil Dihapus!', null);
+        return new EmployeeResource(true, 'Data Post Berhasil Dihapus!', null);
     }
 }

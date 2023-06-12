@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class LapanganResource extends JsonResource
+class EmployeeResource extends JsonResource
 {
     //define properti
     public $status;

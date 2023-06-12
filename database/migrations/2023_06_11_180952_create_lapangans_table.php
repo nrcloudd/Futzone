@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('tipeLapangan');
             $table->integer('priceSiang');
             $table->integer('priceMalam');
-            $table->string('image');
+            //$table->string('image');
             $table->timestamps();
         });
     }
