@@ -71,8 +71,9 @@ class LapanganController extends Controller
      * @param  mixed $lapangan
      * @return void
      */
-    public function show(Lapangan $lapangan)
+    public function show()
     {
+        $lapangan = Lapangan::all();
         //return single post as a resource
         return new LapanganResource(true, 'Data Post Ditemukan!', $lapangan);
     }
