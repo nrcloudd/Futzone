@@ -133,34 +133,34 @@ class LapanganController extends Controller
 
         //return response
         //return new PostResource(true, 'Data Post Berhasil Diubah!', $post);
-    //}
+        //}
 
-    public function update(Request $request, $id)
-    {
-        $lapangan = Lapangan::findOrFail($id);
+        public function update(Request $request, $id)
+        {
+            $lapangan = Lapangan::findOrFail($id);
 
-        if ($request->has('namaLapangan')) {
-            $lapangan->namaLapangan = $request->input('namaLapangan');
+            if ($request->has('namaLapangan')) {
+                $lapangan->namaLapangan = $request->input('namaLapangan');
+            }
+
+            if ($request->has('tipeLapangan')) {
+                $lapangan->tipeLapangan = $request->input('tipeLapangan');
+            }
+
+            if ($request->has('priceSiang')) {
+                $lapangan->priceSiang = $request->input('priceSiang');
+            }
+
+            if ($request->has('priceMalam')) {
+                $lapangan->priceMalam = $request->input('priceMalam');
+            }
+
+            $lapangan->save();
+
+            return response()->json($lapangan);
         }
-
-        if ($request->has('tipeLapangan')) {
-            $lapangan->tipeLapangan = $request->input('tipeLapangan');
-        }
-
-        if ($request->has('priceSiang')) {
-            $lapangan->priceSiang = $request->input('priceSiang');
-        }
-
-        if ($request->has('priceMalam')) {
-            $lapangan->priceMalam = $request->input('priceMalam');
-        }
-
-        $lapangan->save();
-
-        return response()->json($lapangan);
-    }
-    /**
-     * destroy
+        /**
+         * destroy
      *
      * @param  mixed $lapangan
      * @return void
