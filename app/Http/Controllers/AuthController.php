@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Controllers;
+use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
@@ -22,7 +23,7 @@ class AuthController extends Controller
         $members = User::latest()->paginate(5);
 
         //return collection of posts as a resource
-        return new LapanganResource(true, 'List Data Posts', $members);
+        return new UserResource(true, 'List Data Posts', $members);
     }
     /**
      * Get a JWT via given credentials.
@@ -52,7 +53,7 @@ class AuthController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|between:2,100',
             'email' => 'required|string|email|max:100|unique:users',
-            'password' => 'required|string|confirmed|min:6',
+            'password' => 'required|string|min:6',
             'phone' => 'nullable',
             'image'     => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
@@ -60,8 +61,8 @@ class AuthController extends Controller
             return response()->json($validator->errors()->toJson(), 400);
         }
         //upload image
-        $image = $request->file('image');
-        $image->storeAs('public/posts', $image->hashName());
+        // $image = $request->file('image');
+        // $image->storeAs('public/posts', $image->hashName());
 
         $user = User::create(array_merge(
                     $validator->validated(),
