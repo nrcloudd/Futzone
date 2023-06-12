@@ -34,6 +34,7 @@ class AuthController extends Controller
         }
         return $this->createNewToken($token);
     }
+
     /**
      * Register a User.
      *
@@ -43,12 +44,22 @@ class AuthController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|between:2,100',
             'email' => 'required|string|email|max:100|unique:users',
+<<<<<<< Updated upstream
             'password' => 'required|string|min:6',
             'phone' => 'nullable'
+=======
+            'password' => 'required|string|confirmed|min:6',
+            'phone' => 'nullable',
+            'image'     => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+>>>>>>> Stashed changes
         ]);
         if($validator->fails()){
             return response()->json($validator->errors()->toJson(), 400);
         }
+        //upload image
+        $image = $request->file('image');
+        $image->storeAs('public/posts', $image->hashName());
+
         $user = User::create(array_merge(
                     $validator->validated(),
                     ['password' => bcrypt($request->password)]
