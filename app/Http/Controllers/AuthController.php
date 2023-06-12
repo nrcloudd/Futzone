@@ -16,6 +16,14 @@ class AuthController extends Controller
     public function __construct() {
         $this->middleware('auth:api', ['except' => ['login', 'register']]);
     }
+    public function index()
+    {
+        //get posts
+        $members = User::latest()->paginate(5);
+
+        //return collection of posts as a resource
+        return new LapanganResource(true, 'List Data Posts', $members);
+    }
     /**
      * Get a JWT via given credentials.
      *
