@@ -80,6 +80,50 @@ class AuthController extends Controller
         //return single post as a resource
         return new UserResource(true, 'Data Post Ditemukan!', $user);
     }
+    
+    /**
+     * store
+     *
+     * @param  mixed $request
+     * @return void
+     */
+    public function sewa(Request $request)
+    {
+        //define validation rules
+        $validator = Validator::make($request->all(), [
+            'id_member' => 'required',
+            'id_lapangan' => 'required',
+            'jam' => 'required',
+            'tanggal' => 'required',
+            'total_bayar' => 'required',
+            'bukti_bayar' => 'required',
+            //'image'     => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        //check if validation fails
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+
+        //upload image
+        //$image = $request->file('image');
+        //$image->storeAs('public/posts', $image->hashName());
+
+        //create post
+        $transaksi = Transaksi::create([
+            'id_member' => $request->id_member,
+            'id_lapangan' => $request->id_lapangan,
+            'jam' => $request->jam,
+            'tanggal' => $request->tanggal,
+            'total_bayar' => $request->total_bayar,
+            'bukti_bayar' => $request->bukti_bayar,
+
+            //'image'     => $image->hashName(),
+        ]);
+
+        //return response
+        return new LapanganResource(true, 'Data Post Berhasil Ditambahkan!', $transaksi);
+    }
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);

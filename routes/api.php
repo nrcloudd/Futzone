@@ -21,6 +21,7 @@ Route::group([
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/index', [AuthController::class, 'index']);
     Route::post('/show', [AuthController::class, 'show']);
+    Route::post('/sewa', [AuthController::class, 'sewa']);
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/refresh', [AuthController::class, 'refresh']);
     Route::get('/user-profile', [AuthController::class, 'userProfile']);  
@@ -29,6 +30,16 @@ Route::group([
 Route::group([
     'middleware' => 'api',
     'prefix' => 'field'
+], function ($router) {
+    Route::post('/index', [LapanganController::class, 'index']);
+    Route::post('/store', [LapanganController::class, 'store']);
+    Route::post('/show', [LapanganController::class, 'show']);
+    Route::put('/update/{id}', [LapanganController::class, 'update']); 
+});
+
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'trans'
 ], function ($router) {
     Route::post('/index', [LapanganController::class, 'index']);
     Route::post('/store', [LapanganController::class, 'store']);

@@ -55,7 +55,7 @@ class LapanganController extends Controller
         //$image->storeAs('public/posts', $image->hashName());
 
         //create post
-        $transaksi = Lapangan::create([
+        $transaksi = Transaksi::create([
             'id_member' => $request->id_member,
             'id_lapangan' => $request->id_lapangan,
             'jam' => $request->jam,
