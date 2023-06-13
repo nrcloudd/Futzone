@@ -3,6 +3,8 @@ use App\Http\Controllers\LapanganController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\ShowUserController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -41,8 +43,15 @@ Route::group([
     'middleware' => 'api',
     'prefix' => 'trans'
 ], function ($router) {
-    Route::post('/index', [LapanganController::class, 'index']);
-    Route::post('/store', [LapanganController::class, 'store']);
-    Route::post('/show', [LapanganController::class, 'show']);
-    Route::put('/update/{id}', [LapanganController::class, 'update']); 
+    Route::post('/index', [TransaksiController::class, 'index']);
+    Route::post('/store', [TransaksiController::class, 'store']);
+    Route::post('/show', [TransaksiController::class, 'show']);
+});
+
+Route::post('/show', [ShowUserController::class, 'show']);
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'getuser'
+], function ($router) {
+    Route::post('/show', [ShowUserController::class, 'show']);
 });
