@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Lapangan;
+use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-//use App\Http\Resources\LapanganResource;
+use App\Http\Resources\TransaksiResource;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
-class LapanganController extends Controller
+class TransaksiController extends Controller
 {
     /**
      * index
@@ -20,7 +20,7 @@ class LapanganController extends Controller
     public function index()
     {
         //get posts
-        $transaksis = Lapangan::latest()->paginate(5);
+        $transaksis = Transaksi::latest()->paginate(5);
 
         //return collection of posts as a resource
         return new LapanganResource(true, 'List Data Posts', $transaksis);
@@ -67,7 +67,7 @@ class LapanganController extends Controller
         ]);
 
         //return response
-        return new LapanganResource(true, 'Data Post Berhasil Ditambahkan!', $transaksi);
+        return new TransaksiResource(true, 'Data Post Berhasil Ditambahkan!', $transaksi);
     }
 
     /**
@@ -78,8 +78,8 @@ class LapanganController extends Controller
      */
     public function show()
     {
-        $transaksi = Lapangan::all();
+        $transaksi = Transaksi::all();
         //return single post as a resource
-        return new LapanganResource(true, 'Data Post Ditemukan!', $transaksi);
+        return new TransaksiResource(true, 'Data Post Ditemukan!', $transaksi);
     }
 }
