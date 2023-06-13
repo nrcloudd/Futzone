@@ -45,6 +45,7 @@ class AuthController extends Controller
         return $this->createNewToken($token);
     }
 
+
     /**
      * Register a User.
      *
