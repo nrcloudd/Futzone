@@ -80,6 +80,30 @@ class AuthController extends Controller
         //return single post as a resource
         return new UserResource(true, 'Data Post Ditemukan!', $user);
     }
+    public function update(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+
+        if ($request->has('name')) {
+            $user->name = $request->input('name');
+        }
+
+        if ($request->has('email')) {
+            $user->email = $request->input('email');
+        }
+
+        if ($request->has('password')) {
+            $user->password = $request->input('password');
+        }
+
+        if ($request->has('phone')) {
+            $user->phone = $request->input('phone');
+        }
+
+        $user->save();
+
+        return response()->json($user);
+    }
 
     /**
      * Log the user out (Invalidate the token).
