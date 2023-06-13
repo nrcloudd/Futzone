@@ -9,4 +9,14 @@ class Transaksi extends Model
 {
     use HasFactory;
     
+    protected $fillable = [
+        'id_member',
+        'id_lapangan',
+        'jam',
+        'tanggal',
+        'total_bayar',
+        'bukti transaksi'
+        //'image',
+
+    ];
 }

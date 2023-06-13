@@ -15,12 +15,13 @@ return new class extends Migration
     {
         Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_lapangan')->after('id')->foreignId('id_lapangan')->nullable()->after('id')->Constrained()->CascadeOnUpdate()->CascadeOnDelete();
-            $table->foreign('id_lapangan')->references('id')->on('lapangans');
-            $table->unsignedBigInteger('id_user')->after('id_lapangan')->foreignId('id_user')->nullable()->after('id_lapangan')->Constrained()->CascadeOnUpdate()->CascadeOnDelete();
-            $table->foreign('id_user')->references('id')->on('users');
+            $table->unsignedBigInteger('id_member');
+            $table->unsignedBigInteger('id_lapangan');
+            $table->foreign('id_member')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('id_lapangan')->references('id')->on('lapangans')->onDelete('cascade');
             $table->time('jam');
             $table->date('tanggal');
+            $table->integer('total_bayar');
             $table->string('bukti_bayar');
             $table->timestamps();
         });

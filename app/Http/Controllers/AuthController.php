@@ -3,7 +3,6 @@ namespace App\Http\Controllers;
 use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
@@ -26,6 +25,7 @@ class AuthController extends Controller
         //return collection of posts as a resource
         return new UserResource(true, 'List Data Posts', $members);
     }
+    
     /**
      * Get a JWT via given credentials.
      *
@@ -73,6 +73,12 @@ class AuthController extends Controller
             'message' => 'User successfully registered',
             'user' => $user
         ], 201);
+    }
+    public function show()
+    {
+        $user = User::all();
+        //return single post as a resource
+        return new UserResource(true, 'Data Post Ditemukan!', $user);
     }
 
     /**
