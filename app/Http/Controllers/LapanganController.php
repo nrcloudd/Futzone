@@ -21,9 +21,9 @@ class LapanganController extends Controller
     {
         //get posts
         $lapangans = Lapangan::latest()->paginate(5);
-
+        return view('lapangan.index', compact('lapangans'));
         //return collection of posts as a resource
-        return new LapanganResource(true, 'List Data Posts', $lapangans);
+        //return new LapanganResource(true, 'List Data Posts', $lapangans);
     }
 
     /**
@@ -71,9 +71,8 @@ class LapanganController extends Controller
      * @param  mixed $lapangan
      * @return void
      */
-    public function show()
+    public function show(Lapangan $lapangan)
     {
-        $lapangan = Lapangan::all();
         //return single post as a resource
         return new LapanganResource(true, 'Data Post Ditemukan!', $lapangan);
     }
@@ -137,31 +136,31 @@ class LapanganController extends Controller
         //}
 
         public function update(Request $request, $id)
-        {
-            $lapangan = Lapangan::findOrFail($id);
+    {
+        $lapangan = Lapangan::findOrFail($id);
 
-            if ($request->has('namaLapangan')) {
-                $lapangan->namaLapangan = $request->input('namaLapangan');
-            }
-
-            if ($request->has('tipeLapangan')) {
-                $lapangan->tipeLapangan = $request->input('tipeLapangan');
-            }
-
-            if ($request->has('priceSiang')) {
-                $lapangan->priceSiang = $request->input('priceSiang');
-            }
-
-            if ($request->has('priceMalam')) {
-                $lapangan->priceMalam = $request->input('priceMalam');
-            }
-
-            $lapangan->save();
-
-            return response()->json($lapangan);
+        if ($request->has('namaLapangan')) {
+            $lapangan->namaLapangan = $request->input('namaLapangan');
         }
-        /**
-         * destroy
+
+        if ($request->has('tipeLapangan')) {
+            $lapangan->tipeLapangan = $request->input('tipeLapangan');
+        }
+
+        if ($request->has('priceSiang')) {
+            $lapangan->priceSiang = $request->input('priceSiang');
+        }
+
+        if ($request->has('priceMalam')) {
+            $lapangan->priceMalam = $request->input('priceMalam');
+        }
+
+        $lapangan->save();
+
+        return response()->json($lapangan);
+    }
+    /**
+     * destroy
      *
      * @param  mixed $lapangan
      * @return void

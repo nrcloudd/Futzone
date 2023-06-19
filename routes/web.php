@@ -22,3 +22,7 @@ Route::get('/login', function () {
 });
 
 Route::resource('/employees', \App\Http\Controllers\EmployeeController::class);
+
+Route::resource('/lapangans', \App\Http\Controllers\LapanganController::class);
+
+Route::resource('/transaksis', \App\Http\Controllers\TransaksiController::class);

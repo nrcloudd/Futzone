@@ -208,7 +208,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/employe">
+            <a class="nav-link" href="/lapangan">
               <i class="ti-view-list-alt menu-icon"></i>
               <span class="menu-title">Data Karyawan</span>
             </a>
@@ -220,32 +220,33 @@
             <div class="col-md-12">
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
-                        {{-- <a href="{{ route('employee.create') }}" class="btn btn-md btn-success mb-3">TAMBAH LAPANGAN</a> --}}
+                        {{-- <a href="{{ route('lapangan.create') }}" class="btn btn-md btn-success mb-3">TAMBAH LAPANGAN</a> --}}
                         <table class="table table-bordered">
                             <thead>
                               <tr>
-                                <th scope="col">Nama Employee</th>
-                                <th scope="col">Email Employee</th>
-                                <th scope="col">Password Employee</th>
-                                <th scope="col">Level</th>
+                                <th scope="col">Nama Lapangan</th>
+                                <th scope="col">Tipe Lapangan</th>
+                                <th scope="col">Price Siang</th>
+                                <th scope="col">Price Malam</th>
                                 <th scope="col">Action</th>
                               </tr>
                             </thead>
                             <tbody>
-                              @forelse ($employees as $employee)
+                              @forelse ($lapangans as $lapangan)
                                 <tr>
                                     {{-- <td class="text-center">
-                                        <img src="{{ Storage::url('public/images/').$lapangan->image }}" class="rounded" style="width: 150px">
+                                        <img src="{{ Storage::url('public/css/bootstrap/images/').$lapangan->images }}" class="rounded" style="width: 150px">
                                     </td> --}}
-                                    <td>{{ $employee->namaEmploy }}</td>
-                                    <td>{{ $employee->emailEmploy }}</td>
-                                    <td>{{ $employee->passEmploy }}</td>
-                                    <td>{{ $employee->level }}</td>
-                                    {{-- <td>{{ $employee->title }}</td>
-                                    <td>{!! $employee->content !!}</td> --}}
+                                    <td>{{ $lapangan->namaLapangan }}</td>
+                                    <td>{{ $lapangan->tipeLapangan }}</td>
+                                    <td>{{ $lapangan->priceSiang }}</td>
+                                    <td>{{ $lapangan->priceMalam }}</td>
+                                    <td>{{ $lapangan->action }}</td>
+                                    {{-- <td>{{ $lapangan->title }}</td>
+                                    <td>{!! $lapangan->content !!}</td> --}}
                                     <td class="text-center">
-                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('employees.destroy', $employee->id) }}" method="POST">
-                                            <a href="{{ route('employees.update', $employee->id) }}" class="btn btn-sm btn-primary">EDIT</a>
+                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('lapangan.destroy', $lapangan->id) }}" method="POST">
+                                            <a href="{{ route('lapangans.update', $lapangan->id) }}" class="btn btn-sm btn-primary">EDIT</a>
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
@@ -259,7 +260,7 @@
                               @endforelse
                             </tbody>
                           </table>  
-                          {{ $employees->links() }}
+                          {{ $lapangans->links() }}
                     </div>
                 </div>
             </div>

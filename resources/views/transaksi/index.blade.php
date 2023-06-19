@@ -220,32 +220,36 @@
             <div class="col-md-12">
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
-                        {{-- <a href="{{ route('employee.create') }}" class="btn btn-md btn-success mb-3">TAMBAH LAPANGAN</a> --}}
+                        {{-- <a href="{{ route('transaksi.create') }}" class="btn btn-md btn-success mb-3">TAMBAH LAPANGAN</a> --}}
                         <table class="table table-bordered">
                             <thead>
                               <tr>
-                                <th scope="col">Nama Employee</th>
-                                <th scope="col">Email Employee</th>
-                                <th scope="col">Password Employee</th>
-                                <th scope="col">Level</th>
+                                <th scope="col">Id Member</th>
+                                <th scope="col">Id Lapangan</th>
+                                <th scope="col">Jam</th>
+                                <th scope="col">Tanggal</th>
+                                <th scope="col">Total Total Bayar</th>
+                                <th scope="col">Bukti Transaksi</th>
                                 <th scope="col">Action</th>
                               </tr>
                             </thead>
                             <tbody>
-                              @forelse ($employees as $employee)
+                              @forelse ($transaksis as $transaksi)
                                 <tr>
                                     {{-- <td class="text-center">
                                         <img src="{{ Storage::url('public/images/').$lapangan->image }}" class="rounded" style="width: 150px">
                                     </td> --}}
-                                    <td>{{ $employee->namaEmploy }}</td>
-                                    <td>{{ $employee->emailEmploy }}</td>
-                                    <td>{{ $employee->passEmploy }}</td>
-                                    <td>{{ $employee->level }}</td>
-                                    {{-- <td>{{ $employee->title }}</td>
-                                    <td>{!! $employee->content !!}</td> --}}
+                                    <td>{{ $transaksi->idMember }}</td>
+                                    <td>{{ $transaksi->idLapangan }}</td>
+                                    <td>{{ $transaksi->jam }}</td>
+                                    <td>{{ $transaksi->tanggal }}</td>
+                                    <td>{{ $transaksi->totalBayar }}</td>
+                                    <td>{{ $transaksi->buktiBayar }}</td>
+                                    {{-- <td>{{ $transaksi->title }}</td>
+                                    <td>{!! $transaksi->content !!}</td> --}}
                                     <td class="text-center">
-                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('employees.destroy', $employee->id) }}" method="POST">
-                                            <a href="{{ route('employees.update', $employee->id) }}" class="btn btn-sm btn-primary">EDIT</a>
+                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('transaksi.destroy', $transaksi->id) }}" method="POST">
+                                            <a href="{{ route('transaksi.update', $transaksi->id) }}" class="btn btn-sm btn-primary">EDIT</a>
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
@@ -259,7 +263,7 @@
                               @endforelse
                             </tbody>
                           </table>  
-                          {{ $employees->links() }}
+                          {{ $transaksis->links() }}
                     </div>
                 </div>
             </div>
@@ -295,10 +299,10 @@
     <!-- Plugin js for this page-->
     <!-- End plugin js for this page-->
     <!-- inject:js -->
-    <script src="{{ asset('js/off-canvas.js') }}"></script>
-    <script src="{{ asset('js/hoverable-collapse.js') }}"></script>
-    <script src="{{ asset('js/template.js') }}"></script>
-    <script src="{{ asset('js/todolist.js') }}"></script>
+    <script src="{{ asset('css/bootstrap/js/off-canvas.js') }}"></script>
+    <script src="{{ asset('css/bootstrap/js/hoverable-collapse.js') }}"></script>
+    <script src="{{ asset('css/bootstrap/js/template.js') }}"></script>
+    <script src="{{ asset('css/bootstrap/js/todolist.js') }}"></script>
     <script src="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <!-- endinject -->
     <!-- Custom js for this page-->
