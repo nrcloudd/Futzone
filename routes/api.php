@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\LapanganController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -38,6 +39,17 @@ Route::group([
     Route::post('/show', [LapanganController::class, 'show']);
     Route::put('/update/{id}', [LapanganController::class, 'update']); 
 });
+
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'employ'
+], function ($router) {
+    Route::post('/index', [EmployeeController::class, 'index']);
+    Route::post('/store', [EmployeeController::class, 'store']);
+    Route::post('/show', [EmployeeController::class, 'show']);
+    Route::put('/update/{id}', [EmployeeController::class, 'update']); 
+});
+
 
 Route::group([
     'middleware' => 'api',

@@ -21,9 +21,9 @@ class EmployeeController extends Controller
     {
         //get posts
         $employees = Employee::latest()->paginate(5);
-
+        return view('employee.index', compact('employees'));
         //return collection of posts as a resource
-        return new EmployeeResource(true, 'List Data Posts', $employees);
+        //return new EmployeeResource(true, 'List Data Posts', $employees);
     }
 
     /**
