@@ -24,6 +24,7 @@ Route::group([
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/index', [AuthController::class, 'index']);
     Route::post('/show', [AuthController::class, 'show']);
+    Route::post('/update/{id}', [AuthController::class, 'show']);
     Route::post('/sewa', [AuthController::class, 'sewa']);
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/refresh', [AuthController::class, 'refresh']);
