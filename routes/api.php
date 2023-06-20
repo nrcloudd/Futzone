@@ -33,7 +33,7 @@ Route::group([
 
 Route::group([
     'middleware' => 'api',
-    'prefix' => 'lapangan'
+    'prefix' => 'field'
 ], function ($router) {
     Route::post('/index', [LapanganController::class, 'index']);
     Route::post('/store', [LapanganController::class, 'store']);
