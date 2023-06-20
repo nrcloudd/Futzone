@@ -1,6 +1,8 @@
 <?php
 namespace App\Http\Controllers;
+use App\Http\Resources\TransaksiResource;
 use App\Http\Resources\UserResource;
+use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
@@ -124,7 +126,7 @@ class AuthController extends Controller
         ]);
 
         //return response
-        return new LapanganResource(true, 'Data Post Berhasil Ditambahkan!', $transaksi);
+        return new TransaksiResource(true, 'Data Post Berhasil Ditambahkan!', $transaksi);
     }
     public function update(Request $request, $id)
     {
@@ -147,6 +149,7 @@ class AuthController extends Controller
         }
 
         $user->save();
+
 
         return response()->json($user);
     }
