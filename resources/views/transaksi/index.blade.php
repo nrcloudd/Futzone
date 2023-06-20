@@ -172,7 +172,8 @@
                 </button>
             </div>
         </nav>
-        <!-- partial -->
+
+                            <!-- partial -->
         <div class="container-fluid page-body-wrapper">
             <!-- partial:../../partials/_sidebar.html -->
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
@@ -220,7 +221,7 @@
             <div class="col-md-12">
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
-                        {{-- <a href="{{ route('transaksi.create') }}" class="btn btn-md btn-success mb-3">TAMBAH LAPANGAN</a> --}}
+                        {{-- <a href="{{ route('employee.create') }}" class="btn btn-md btn-success mb-3">TAMBAH LAPANGAN</a> --}}
                         <table class="table table-bordered">
                             <thead>
                               <tr>

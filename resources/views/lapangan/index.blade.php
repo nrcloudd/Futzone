@@ -26,6 +26,7 @@
 </head>
 
 <body>
+    
     <div class="container-scroller">
         <!-- partial:../../partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
@@ -34,6 +35,7 @@
                         class="me-2" alt="logo" /></a>
                 <a class="navbar-brand brand-logo-mini" href="../../index.blade.php"><img src="{{ asset('css/bootstrap/images/logo-mini.svg') }}"
                         alt="logo" /></a>
+                        
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
                 <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -172,57 +174,122 @@
                 </button>
             </div>
         </nav>
-        <!-- partial -->
-        <div class="container-fluid page-body-wrapper">
+       <!-- partial -->
+       <div class="container-fluid page-body-wrapper">
             <!-- partial:../../partials/_sidebar.html -->
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="/dashboard">
+            <a class="nav-link" href="../../dashboard.php">
               <i class="ti-shield menu-icon"></i>
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/tableregister">
+            <a class="nav-link" href="Tabel-Register.php">
               <i class="ti-view-list-alt menu-icon"></i>
               <span class="menu-title">Data Register</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/transaksi">
+            <a class="nav-link" href="Tabel-Transaksi.php">
               <i class="ti-view-list-alt menu-icon"></i>
               <span class="menu-title">Data Transaksi</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/detailTransaksi">
+            <a class="nav-link" href="Tabel-Detailtransaksi.php">
               <i class="ti-view-list-alt menu-icon"></i>
               <span class="menu-title">Data Detail Transaksi</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/lapangan">
+            <a class="nav-link" href="lapangan.php">
               <i class="ti-view-list-alt menu-icon"></i>
               <span class="menu-title">Data Lapangan</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/lapangan">
+            <a class="nav-link" href="employe.php">
               <i class="ti-view-list-alt menu-icon"></i>
               <span class="menu-title">Data Karyawan</span>
             </a>
           </li>
         </ul>
       </nav>
-      <div class="container mt-5">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card border-0 shadow rounded">
-                    <div class="card-body">
-                        {{-- <a href="{{ route('lapangan.create') }}" class="btn btn-md btn-success mb-3">TAMBAH LAPANGAN</a> --}}
-                        <table class="table table-bordered">
-                            <thead>
+            <!-- partial -->
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    <div class="grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+
+                                    <h4 class="card-title">Lapangan</h4>
+                                    <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                        data-bs-target="#modalTambah">
+                                        Tambah data
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="modalTambah" data-bs-backdrop="static"
+                                        data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Form Data
+                                                        Lapangan</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                <form action="" method="POST">
+                    <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="" class='form-label'>Kode</label>
+                        <input type="text" placeholder="Masukkan Kode Lapangan" name="id" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class='form-label'>Nama Lapangan</label>
+                        <input type="text" placeholder="Masukkan Nama Lapangan" name="nama" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class='form-label'>Tipe</label>
+                        <select name="tipe" id="" class='form-select'>
+                            <option value="reguler" selected>Reguler</option>
+                            <option value="jumbo">Jumbo</option>
+                            <option value="rumput">Rumput</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class='form-label'>Harga</label>
+                        <select name="malam" id="" class='form-select'>
+                            <option value="100000" selected>Rp 100.000</option>
+                            <option value="130000">Rp 130.000</option>
+                            <option value="145000">Rp 145.000</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class='form-label'>Status</label>
+                        <select name="status" id="" class='custom-select'>
+                            <option value="Tersedia" selected>Tersedia</option>
+                            <option value="Disewa">Disewa</option>
+                        </select>
+                    </div>
+                </div>
+                <div class ='modal-footer'>
+                    <button type="submit" class="btn btn-primary" name="bsimpan">Simpan</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-hover" id="karyawan">
+                                        <thead>
                               <tr>
                                 <th scope="col">Nama Lapangan</th>
                                 <th scope="col">Tipe Lapangan</th>
