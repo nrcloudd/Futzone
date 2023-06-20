@@ -13,13 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('lapangans', function (Blueprint $table) {
-            $table->id();
-            $table->string('namaLapangan');
-            $table->string('tipeLapangan');
-            $table->integer('harga');
-            //$table->string('image');
-            $table->timestamps();
+        Schema::table('lapangans', function (Blueprint $table) {
+            $table->unsignedBigInteger('tipeLapangan')->after('namaLapangan')->CascadeOnUpdate()->CascadeOnDelete();
+            $table->foreign('tipeLapangan')->references('id')->on('tipe_lapangan');
         });
     }
 
@@ -30,6 +26,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lapangans');
+        Schema::table('lapangans', function (Blueprint $table) {
+            //
+        });
     }
 };

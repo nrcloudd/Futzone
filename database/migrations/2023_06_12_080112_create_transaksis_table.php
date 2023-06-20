@@ -15,11 +15,10 @@ return new class extends Migration
     {
         Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_member');
-            $table->unsignedBigInteger('id_lapangan');
-            $table->foreign('id_member')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('id_lapangan')->references('id')->on('lapangans')->onDelete('cascade');
-            $table->time('jam');
+            $table->string('namaMember');
+            $table->string('namaLapangan');
+            $table->time('jamAwal');
+            $table->time('jamAkhir');
             $table->date('tanggal');
             $table->integer('total_bayar');
             $table->string('bukti_bayar');

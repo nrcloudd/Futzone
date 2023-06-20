@@ -81,7 +81,7 @@ class EmployeeController extends Controller
      * update
      *
      * @param  mixed $request
-     * @param  mixed $lapangan
+     * @param  mixed $employee
      * @return void
      */
     // public function update(Request $request, $id)
@@ -162,7 +162,7 @@ class EmployeeController extends Controller
     /**
      * destroy
      *
-     * @param  mixed $lapangan
+     * @param  mixed $employee
      * @return void
      */
     public function destroy(Employee $employee)

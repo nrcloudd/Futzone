@@ -2,24 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Transaksi;
+use App\Http\Resources\TipeLapangan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\TransaksiResource;
+use App\Http\Resources\EmployeeResource;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
-class TransaksiController extends Controller
+class TipeLapanganController extends Controller
 {
-    public function anjay(){
-        $jointipe = Transaksi::join('lapangans', 'transaksis.namaLapangan', '=', 'lapangans.id')//Im not sure about this
-            ->join('users', 'transaksis.namaMember', '=', 'users.id') 
-            ->select('transaksis.*', 'lapangans.namaLapangan as namaLapangan', 'users.name as namaMember')  // neither this 
-            ->get();
-
-            return new TransaksiResource(true, 'Data Post Ditemukan!', $jointipe);
-    }
     /**
      * index
      *
@@ -28,10 +20,9 @@ class TransaksiController extends Controller
     public function index()
     {
         //get posts
-        $transaksis = Transaksi::latest()->paginate(5);
-        return view('transaksi.index', compact('transaksis'));
+        $tipe = \App\Models\TipeLapangan::latest()->paginate(5);
         //return collection of posts as a resource
-        //return new TransaksiResource(true, 'List Data Posts', $transaksis);
+        return new TipeLapangan(true, 'List Data Posts', $tipe);
     }
 
     /**
@@ -40,18 +31,12 @@ class TransaksiController extends Controller
      * @param  mixed $request
      * @return void
      */
-    
     public function store(Request $request)
     {
         //define validation rules
         $validator = Validator::make($request->all(), [
-            'namaMember' => 'required',
-            'namaLapangan' => 'required',
-            'jamAwal' => 'required',
-            'jamAkhir' => 'required',
-            'tanggal' => 'required',
-            'totalBayar' => 'required',
-            'buktiBayar' => 'required',
+            'tipeLapangan' => 'required',
+            'harga' => 'required',
             //'image'     => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
@@ -59,48 +44,39 @@ class TransaksiController extends Controller
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
         }
-        
 
         //upload image
         //$image = $request->file('image');
         //$image->storeAs('public/posts', $image->hashName());
 
         //create post
-        
-        $transaksi = Transaksi::create([
-            'namaMember' => $request->id_member,
-            'namaLapangan' => $request->id_lapangan,
-            'jamAwal' => $request->jamA,
-            'jamAkhir' => $request->jamB,
-            'tanggal' => $request->tanggal,
-            'totalBayar' => $request->totalBayar,
-            'buktiBayar' => $request->buktiBayar,
-
+        $tipe = \App\Models\TipeLapangan::create([
+            'tipeLapangan' => $request->tipeLapangan,
+            'harga' => $request->harga,
             //'image'     => $image->hashName(),
         ]);
 
         //return response
-        return new TransaksiResource(true, 'Data Post Berhasil Ditambahkan!', $transaksi);
+        return new TipeLapangan(true, 'Data Post Berhasil Ditambahkan!', $tipe);
     }
 
     /**
      * show
      *
-     * @param  mixed $transakasi
+     * @param  mixed $lapangan
      * @return void
      */
-    public function show(Transaksi $transaksi)
+    public function show(Employee $employee)
     {
-        $transaksi = Transaksi::all();
         //return single post as a resource
-        return new TransaksiResource(true, 'Data Post Ditemukan!', $transaksi);
+        return new EmployeeResource(true, 'Data Post Ditemukan!', $employee);
     }
-    
+
     /**
      * update
      *
      * @param  mixed $request
-     * @param  mixed $lapangan
+     * @param  mixed $employee
      * @return void
      */
     // public function update(Request $request, $id)
@@ -156,50 +132,35 @@ class TransaksiController extends Controller
 
     public function update(Request $request, $id)
     {
-        $transaksi = Transaksi::findOrFail($id);
+        $tipe = TipeLapangan::findOrFail($id);
 
-        if ($request->has('idMember')) {
-            $transaksi->idMember = $request->input('idMember');
+        if ($request->has('tipeLapangan')) {
+            $tipe->tipeLapangan = $request->input('tipeLapangan');
         }
 
-        if ($request->has('idLapangan')) {
-            $transaksi->idLapangan = $request->input('idLapangan');
+        if ($request->has('harga')) {
+            $tipe->harga = $request->input('harga');
         }
 
-        if ($request->has('jam')) {
-            $transaksi->jam = $request->input('jam');
-        }
+        $tipe->save();
 
-        if ($request->has('tanggal')) {
-            $transaksi->tanggal = $request->input('tanggal');
-        }
-        if ($request->has('totalBayar')) {
-            $transaksi->totalBayar = $request->input('totalBayar');
-        }
-
-        if ($request->has('buktiBayar')) {
-            $transaksi->buktiBayar = $request->input('buktiBayar');
-        }
-
-        $transaksi->save();
-
-        return response()->json($transaksi);
+        return response()->json($tipe);
     }
     /**
      * destroy
      *
-     * @param  mixed $lapangan
+     * @param  mixed $employee
      * @return void
      */
-    public function destroy(Transaksi $transaksi)
+    public function destroy(TipeLapangan $tipe)
     {
         //delete image
         //Storage::delete('public/posts/' . $lapangan->image);
 
         //delete post
-        $transaksi->delete();
+        $tipe->delete();
 
         //return response
-        return new TransaksiResource(true, 'Data Post Berhasil Dihapus!', null);
+        return new EmployeeResource(true, 'Data Post Berhasil Dihapus!', null);
     }
 }

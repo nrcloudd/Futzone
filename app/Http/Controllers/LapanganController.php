@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Lapangan;
+use App\Models\TipeLapangan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\LapanganResource;
@@ -12,6 +13,13 @@ use Illuminate\Support\Facades\Validator;
 
 class LapanganController extends Controller
 {
+    public function anjay(){
+        $jointipe = Lapangan::join('tipe_lapangan', 'lapangans.tipeLapangan', '=', 'tipe_lapangan.id')//Im not sure about this 
+            ->select('lapangans.*', 'tipe_lapangan.tipeLapangan as tipe', 'tipe_lapangan.harga as harga')  // neither this 
+            ->get();
+
+            return new LapanganResource(true, 'Data Post Ditemukan!', $jointipe);
+    }
     /**
      * index
      *
@@ -22,6 +30,7 @@ class LapanganController extends Controller
         //get posts
         $lapangans = Lapangan::latest()->paginate(5);
         return view('lapangan.index', compact('lapangans'));
+       
         //return collection of posts as a resource
         //return new LapanganResource(true, 'List Data Posts', $lapangans);
     }
@@ -38,8 +47,7 @@ class LapanganController extends Controller
         $validator = Validator::make($request->all(), [
             'namaLapangan' => 'required',
             'tipeLapangan' => 'required',
-            'priceSiang' => 'required',
-            'priceMalam' => 'required',
+            'harga' => 'required',
             //'image'     => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
@@ -48,16 +56,17 @@ class LapanganController extends Controller
             return response()->json($validator->errors(), 422);
         }
 
+        //$tipel = TipeLapangan::Find($request->input('tipeLapangan'));
+
         //upload image
         //$image = $request->file('image');
         //$image->storeAs('public/posts', $image->hashName());
 
-        //create post
+        //create post   
         $lapangan = Lapangan::create([
             'namaLapangan' => $request->namaLapangan,
             'tipeLapangan' => $request->tipeLapangan,
-            'priceSiang' => $request->priceSiang,
-            'priceMalam' => $request->priceMalam,
+            'harga' => $request->harga,
             //'image'     => $image->hashName(),
         ]);
 
@@ -79,16 +88,20 @@ class LapanganController extends Controller
     }
 
    public function show2(Request $request)
-{
-    $id = $request->input('id');
+{   $id = $request->input('id');
     
-    $lapangan = Lapangan::where('id', $id)->get();
+    $jointipe = Lapangan::join('tipe_lapangan', 'lapangans.tipeLapangan', '=', 'tipe_lapangan.id')//Im not sure about this 
+            ->select('lapangans.*', 'tipe_lapangan.tipeLapangan as tipe', 'tipe_lapangan.harga as harga')  // neither this 
+            ->where('lapangans.id', $id)
+            ->get();
     
-    if ($lapangan->isEmpty()) {
+
+    
+    if ($jointipe->isEmpty()) {
         return new LapanganResource(false, 'Data Post Tidak Ditemukan!', null);
     }
     
-    return new LapanganResource(true, 'Data Post Ditemukan!', $lapangan);
+    return new LapanganResource(true, 'Data Post Ditemukan!', $jointipe);
 }
 
     
@@ -163,14 +176,9 @@ class LapanganController extends Controller
             $lapangan->tipeLapangan = $request->input('tipeLapangan');
         }
 
-        if ($request->has('priceSiang')) {
-            $lapangan->priceSiang = $request->input('priceSiang');
+        if ($request->has('harga')) {
+            $lapangan->harga = $request->input('harga');
         }
-
-        if ($request->has('priceMalam')) {
-            $lapangan->priceMalam = $request->input('priceMalam');
-        }
-
         $lapangan->save();
 
         return response()->json($lapangan);
