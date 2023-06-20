@@ -78,6 +78,21 @@ class LapanganController extends Controller
         return new LapanganResource(true, 'Data Post Ditemukan!', $lapangan);
     }
 
+   public function show2(Request $request)
+{
+    $id = $request->input('id');
+    
+    $lapangan = Lapangan::where('id', $id)->get();
+    
+    if ($lapangan->isEmpty()) {
+        return new LapanganResource(false, 'Data Post Tidak Ditemukan!', null);
+    }
+    
+    return new LapanganResource(true, 'Data Post Ditemukan!', $lapangan);
+}
+
+    
+
     /**
      * update
      *

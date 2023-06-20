@@ -37,6 +37,7 @@ Route::group([
     Route::post('/index', [LapanganController::class, 'index']);
     Route::post('/store', [LapanganController::class, 'store']);
     Route::post('/show', [LapanganController::class, 'show']);
+    Route::post('/show2', [LapanganController::class, 'show2']);
     Route::put('/update/{id}', [LapanganController::class, 'update']); 
 });
 

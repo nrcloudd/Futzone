@@ -38,7 +38,8 @@ class TransaksiController extends Controller
         $validator = Validator::make($request->all(), [
             'id_member' => 'required',
             'id_lapagan' => 'required',
-            'jam' => 'required',
+            'jamAwal' => 'required',
+            'jamAkhir' => 'required',
             'tanggal' => 'required',
             'total_bayar' => 'required',
             'bukti_bayar' => 'required',
@@ -58,7 +59,8 @@ class TransaksiController extends Controller
         $transaksi = Transaksi::create([
             'id_member' => $request->id_member,
             'id_lapangan' => $request->id_lapangan,
-            'jam' => $request->jam,
+            'jamAwal' => $request->jamA,
+            'jamAkhir' => $request->jamB,
             'tanggal' => $request->tanggal,
             'total_bayar' => $request->total_bayar,
             'bukti_bayar' => $request->bukti_bayar,
