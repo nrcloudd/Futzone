@@ -66,7 +66,7 @@ class TipeLapanganController extends Controller
      * @param  mixed $lapangan
      * @return void
      */
-    public function show(Employee $employee)
+    public function show(TipeLapangan $tipe)
     {
         //return single post as a resource
         $tipe = \App\Models\TipeLapangan::all();
