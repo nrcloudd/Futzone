@@ -69,7 +69,8 @@ class TipeLapanganController extends Controller
     public function show(Employee $employee)
     {
         //return single post as a resource
-        return new EmployeeResource(true, 'Data Post Ditemukan!', $employee);
+        $tipe = \App\Models\TipeLapangan::all();
+        return new EmployeeResource(true, 'Data Post Ditemukan!', $tipe);
     }
 
     /**
