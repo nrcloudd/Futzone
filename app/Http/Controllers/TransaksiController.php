@@ -50,8 +50,9 @@ class TransaksiController extends Controller
             'jamAwal' => 'required',
             'jamAkhir' => 'required',
             'tanggal' => 'required',
-            'totalBayar' => 'required',
-            'buktiBayar' => 'required',
+            'total_bayar' => 'required',
+            'sisa_bayar' => 'required',
+            'bukti_bayar' => 'required',
             //'image'     => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
@@ -73,8 +74,9 @@ class TransaksiController extends Controller
             'jamAwal' => $request->jamA,
             'jamAkhir' => $request->jamB,
             'tanggal' => $request->tanggal,
-            'totalBayar' => $request->totalBayar,
-            'buktiBayar' => $request->buktiBayar,
+            'total_bayar' => $request->totalBayar,
+            'sisa_bayar' => $request->totalBayar,
+            'bukti_bayar' => $request->buktiBayar,
 
             //'image'     => $image->hashName(),
         ]);

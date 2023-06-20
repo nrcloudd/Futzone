@@ -12,10 +12,12 @@ class Transaksi extends Model
     protected $fillable = [
         'id_member',
         'id_lapangan',
-        'jam',
+        'jamAwal',
+        'jamAkhir',
         'tanggal',
         'total_bayar',
-        'bukti transaksi'
+        'sisa_bayar',
+        'bukti_transaksi'
         //'image',
 
     ];
