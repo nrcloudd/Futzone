@@ -21,6 +21,7 @@ return new class extends Migration
             $table->time('jamAkhir');
             $table->date('tanggal');
             $table->integer('total_bayar');
+            $table->integer('sisa_bayar');
             $table->string('bukti_bayar');
             $table->timestamps();
         });

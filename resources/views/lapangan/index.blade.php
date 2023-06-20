@@ -308,11 +308,10 @@
                                     <td>{{ $lapangan->tipeLapangan }}</td>
                                     <td>{{ $lapangan->priceSiang }}</td>
                                     <td>{{ $lapangan->priceMalam }}</td>
-                                    <td>{{ $lapangan->action }}</td>
                                     {{-- <td>{{ $lapangan->title }}</td>
                                     <td>{!! $lapangan->content !!}</td> --}}
                                     <td class="text-center">
-                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('lapangan.destroy', $lapangan->id) }}" method="POST">
+                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('lapangans.destroy', $lapangan->id) }}" method="POST">
                                             <a href="{{ route('lapangans.update', $lapangan->id) }}" class="btn btn-sm btn-primary">EDIT</a>
                                             @csrf
                                             @method('DELETE')
