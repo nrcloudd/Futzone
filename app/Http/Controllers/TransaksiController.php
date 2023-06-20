@@ -52,8 +52,7 @@ class TransaksiController extends Controller
             'tanggal' => 'required',
             'total_bayar' => 'required',
             'sisa_bayar' => 'required',
-            'bukti_bayar' => 'required',
-            //'image'     => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'bukti_bayar'     => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
         ]);
 
         //check if validation fails
@@ -63,8 +62,8 @@ class TransaksiController extends Controller
         
 
         //upload image
-        //$image = $request->file('image');
-        //$image->storeAs('public/posts', $image->hashName());
+        $image = $request->file('bukti_bayar');
+        $image->storeAs('public/posts', $image->hashName());
 
         //create post
         
@@ -76,9 +75,7 @@ class TransaksiController extends Controller
             'tanggal' => $request->tanggal,
             'total_bayar' => $request->totalBayar,
             'sisa_bayar' => $request->totalBayar,
-            'bukti_bayar' => $request->buktiBayar,
-
-            //'image'     => $image->hashName(),
+            'bukti_bayar' => $image->hashName(),
         ]);
 
         //return response

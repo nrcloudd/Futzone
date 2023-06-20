@@ -17,7 +17,7 @@ class Transaksi extends Model
         'tanggal',
         'total_bayar',
         'sisa_bayar',
-        'bukti_transaksi'
+        'bukti_bayar'
         //'image',
 
     ];
