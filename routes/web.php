@@ -21,8 +21,10 @@ Route::get('/login', function () {
     return view('login');
 });
 
-Route::resource('/employees', \App\Http\Controllers\EmployeeController::class);
+Route::resource('/employee', \App\Http\Controllers\EmployeeController::class);
 
-Route::resource('/lapangans', \App\Http\Controllers\LapanganController::class);
+Route::resource('/lapangan', \App\Http\Controllers\LapanganController::class);
 
-Route::resource('/transaksis', \App\Http\Controllers\TransaksiController::class);
+Route::resource('/transaksi', \App\Http\Controllers\TransaksiController::class);
+
+Route::resource('/member', \App\Http\Controllers\Controller::class);

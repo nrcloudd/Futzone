@@ -185,7 +185,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/tableregister">
+            <a class="nav-link" href="/member">
               <i class="ti-view-list-alt menu-icon"></i>
               <span class="menu-title">Data Register</span>
             </a>
@@ -197,19 +197,13 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/detailTransaksi">
-              <i class="ti-view-list-alt menu-icon"></i>
-              <span class="menu-title">Data Detail Transaksi</span>
-            </a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="/lapangan">
               <i class="ti-view-list-alt menu-icon"></i>
               <span class="menu-title">Data Lapangan</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/employe">
+            <a class="nav-link" href="/employee">
               <i class="ti-view-list-alt menu-icon"></i>
               <span class="menu-title">Data Karyawan</span>
             </a>
@@ -227,7 +221,8 @@
                               <tr>
                                 <th scope="col">Id Member</th>
                                 <th scope="col">Id Lapangan</th>
-                                <th scope="col">Jam</th>
+                                <th scope="col">Jam Awal</th>
+                                <th scope="col">Jam Akhir</th>
                                 <th scope="col">Tanggal</th>
                                 <th scope="col">Total Total Bayar</th>
                                 <th scope="col">Bukti Transaksi</th>
@@ -240,12 +235,13 @@
                                     {{-- <td class="text-center">
                                         <img src="{{ Storage::url('public/images/').$lapangan->image }}" class="rounded" style="width: 150px">
                                     </td> --}}
-                                    <td>{{ $transaksi->idMember }}</td>
-                                    <td>{{ $transaksi->idLapangan }}</td>
-                                    <td>{{ $transaksi->jam }}</td>
+                                    <td>{{ $transaksi->namaMember }}</td>
+                                    <td>{{ $transaksi->namaLapangan }}</td>
+                                    <td>{{ $transaksi->jamAwal }}</td>
+                                    <td>{{ $transaksi->jamAkhir }}</td>
                                     <td>{{ $transaksi->tanggal }}</td>
-                                    <td>{{ $transaksi->totalBayar }}</td>
-                                    <td>{{ $transaksi->buktiBayar }}</td>
+                                    <td>{{ $transaksi->total_bayar }}</td>
+                                    <td>{{ $transaksi->bukti_bayar }}</td>
                                     {{-- <td>{{ $transaksi->title }}</td>
                                     <td>{!! $transaksi->content !!}</td> --}}
                                     <td class="text-center">

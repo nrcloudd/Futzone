@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.15/dist/sweetalert2.all.min.js"></script>
     <script src="sweetalert2.all.min.js"></script>
     <link rel="stylesheet" href="{{ asset('vendors/ti-icons/css/themify-icons.css') }}">
-    <link rel="stylesheet" href="{{ asset('vendors/base/vendor.bundle.base.css')}}">
+    <link rel="stylesheet" href="{{ asset('vendors/base/vendor.bundle.base.css') }}">
     <!-- endinject -->
     <!-- inject:css -->
     <link href="{{ asset('css/bootstrap/layout/style.css') }}" rel="stylesheet">
@@ -21,7 +21,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
-    <link href="{{ asset('css/bootstrap/images/logo1.png') }}"   rel="shortcut icon"/>
+    <link href="{{ asset('css/bootstrap/images/logo1.png') }}" rel="shortcut icon" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
 </head>
 
@@ -30,10 +30,10 @@
         <!-- partial:../../partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo me-5" href="../../index.blade.php"><img src="{{ asset('css/bootstrap/images/logo.svg') }}"
-                        class="me-2" alt="logo" /></a>
-                <a class="navbar-brand brand-logo-mini" href="../../index.blade.php"><img src="{{ asset('css/bootstrap/images/logo-mini.svg') }}"
-                        alt="logo" /></a>
+                <a class="navbar-brand brand-logo me-5" href="../../index.blade.php"><img
+                        src="{{ asset('css/bootstrap/images/logo.svg') }}" class="me-2" alt="logo" /></a>
+                <a class="navbar-brand brand-logo-mini" href="../../index.blade.php"><img
+                        src="{{ asset('css/bootstrap/images/logo-mini.svg') }}" alt="logo" /></a>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
                 <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -63,7 +63,8 @@
                             <p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
                             <a class="dropdown-item">
                                 <div class="item-thumbnail">
-                                    <img src="{{ asset('css/bootstrap/images/faces/face4.jpg') }}" alt="image" class="profile-pic">
+                                    <img src="{{ asset('css/bootstrap/images/faces/face4.jpg') }}" alt="image"
+                                        class="profile-pic">
                                 </div>
                                 <div class="item-content flex-grow">
                                     <h6 class="ellipsis font-weight-normal">David Grey
@@ -150,7 +151,8 @@
                         </div>
                     </li>
                     <li class="nav-item nav-profile dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                            id="profileDropdown">
                             <img src="{{ asset('css/bootstrap/images/faces/face28.jpg') }}" />
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
@@ -172,113 +174,97 @@
                 </button>
             </div>
         </nav>
-                <!-- partial -->
-                <div class="container-fluid page-body-wrapper">
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
             <!-- partial:../../partials/_sidebar.html -->
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
-        <ul class="nav">
-          <li class="nav-item">
-            <a class="nav-link" href="/dashboard">
-              <i class="ti-shield menu-icon"></i>
-              <span class="menu-title">Dashboard</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/tableregister">
-              <i class="ti-view-list-alt menu-icon"></i>
-              <span class="menu-title">Data Register</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/transaksi">
-              <i class="ti-view-list-alt menu-icon"></i>
-              <span class="menu-title">Data Transaksi</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/detailTransaksi">
-              <i class="ti-view-list-alt menu-icon"></i>
-              <span class="menu-title">Data Detail Transaksi</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/lapangan">
-              <i class="ti-view-list-alt menu-icon"></i>
-              <span class="menu-title">Data Lapangan</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/employe">
-              <i class="ti-view-list-alt menu-icon"></i>
-              <span class="menu-title">Data Karyawan</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-<!-- partial -->
-<div class="main-panel">
-        <div class="content-wrapper">
-          <div class="grid-margin stretch-card">
-            <div class="card">
-              <div class="card-body">
-              <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/dashboard">
+                            <i class="ti-shield menu-icon"></i>
+                            <span class="menu-title">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/member">
+                            <i class="ti-view-list-alt menu-icon"></i>
+                            <span class="menu-title">Data Register</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/transaksi">
+                            <i class="ti-view-list-alt menu-icon"></i>
+                            <span class="menu-title">Data Transaksi</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/lapangan">
+                            <i class="ti-view-list-alt menu-icon"></i>
+                            <span class="menu-title">Data Lapangan</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/employee">
+                            <i class="ti-view-list-alt menu-icon"></i>
+                            <span class="menu-title">Data Karyawan</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- partial -->
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    <div class="grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-sm-flex align-items-center justify-content-between mb-4">
 
-                <h4 class="card-title">Tabel Transaksi</h4>
-                <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                    <h4 class="card-title">Tabel Employee</h4>
+                                    <button type="button" class="btn btn-success" data-bs-toggle="modal"
                                         data-bs-target="#modalTambah">
                                         Tambah data
                                     </button>
-<!-- Modal -->
-<div class="modal fade" id="modalTambah" data-bs-backdrop="static"
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="modalTambah" data-bs-backdrop="static"
                                         data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
                                         aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Form Transaksi</h1>
+                                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Form
+                                                        Employee</h1>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
-                <form action="" method="POST">
-                    <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="" class='form-label'>ID</label>
-                        <input type="text" placeholder="Masukkan ID Transaksi" name="id" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="" class='form-label'>Nama Lapangan</label>
-                        <input type="text" placeholder="Masukkan Nama Lapangan" name="nama" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="" class='form-label'>Waktu</label>
-                        <input type="text" placeholder="Masukkan waktu mulai" name="nama" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="" class='form-label'>Expired</label>
-                        <input type="text" placeholder="Masukkan waktu selesai" name="nama" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="" class='form-label'>Harga</label>
-                        <input type="text" placeholder="Masukkan Harga" name="nama" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="" class='form-label'>Status</label>
-                        <select name="malam" id="" class='form-select'>
-                            <option value="Aktif">Aktif</option>
-                            <option value="Non Aktif">Non Aktif</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="" class='form-label'>Aksi</label>
-                        <select name="malam" id="" class='form-select'>
-                            
-                        </select>
-                    </div>
-                </div>
-                <div class ='modal-footer'>
-                    <button type="submit" class="btn btn-primary" name="bsimpan">Simpan</button>
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
-                </div>
+                                                <form action="" method="POST">
+                                                    <div class="modal-body">
+                                                        <div class="mb-3">
+                                                            <label for="" class='form-label'>Nama Employee</label>
+                                                            <input type="text" placeholder="Masukkan nama"
+                                                                name="namaEmploy" class="form-control" required>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="" class='form-label'>Email</label>
+                                                            <input type="text" placeholder="Masukkan Nama Lapangan"
+                                                                name="emailEmploy" class="form-control" required>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="" class='form-label'>Password</label>
+                                                            <input type="text" placeholder="Masukkan Password"
+                                                                name="passEmploy" class="form-control" required>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="" class='form-label'>Level</label>
+                                                            <input type="text" placeholder="Masukkan waktu selesai"
+                                                                name="level" class="form-control" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class='modal-footer'>
+                                                        <button type="submit" class="btn btn-primary"
+                                                            name="bsimpan">Simpan</button>
+                                                        <button type="button" class="btn btn-danger"
+                                                            data-bs-dismiss="modal">Batal</button>
+                                                    </div>
                                                 </form>
                                             </div>
                                         </div>
@@ -286,76 +272,78 @@
 
                                 </div>
 
-                <p class="card-description">
-                 
-                </p>
-                <div class="table-responsive">
-                    <table class="table table-hover" id="karyawan">
-                        <thead>
-                              <tr>
-                                <th scope="col">Nama Employee</th>
-                                <th scope="col">Email Employee</th>
-                                <th scope="col">Password Employee</th>
-                                <th scope="col">Level</th>
-                                <th scope="col">Action</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              @forelse ($employees as $employee)
-                                <tr>
-                                    {{-- <td class="text-center">
+                                <p class="card-description">
+
+                                </p>
+                                <div class="table-responsive">
+                                    <table class="table table-hover" id="karyawan">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Nama Employee</th>
+                                                <th scope="col">Email Employee</th>
+                                                <th scope="col">Password Employee</th>
+                                                <th scope="col">Level</th>
+                                                <th scope="col">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @forelse ($employees as $employee)
+                                                <tr>
+                                                    {{-- <td class="text-center">
                                         <img src="{{ Storage::url('public/images/').$lapangan->image }}" class="rounded" style="width: 150px">
                                     </td> --}}
-                                    <td>{{ $employee->namaEmploy }}</td>
-                                    <td>{{ $employee->emailEmploy }}</td>
-                                    <td>{{ $employee->passEmploy }}</td>
-                                    <td>{{ $employee->level }}</td>
-                                    {{-- <td>{{ $employee->title }}</td>
+                                                    <td>{{ $employee->namaEmploy }}</td>
+                                                    <td>{{ $employee->emailEmploy }}</td>
+                                                    <td>{{ $employee->passEmploy }}</td>
+                                                    <td>{{ $employee->level }}</td>
+                                                    {{-- <td>{{ $employee->title }}</td>
                                     <td>{!! $employee->content !!}</td> --}}
-                                    <td class="text-center">
-                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('employees.destroy', $employee->id) }}" method="POST">
-                                            <a href="{{ route('employees.update', $employee->id) }}" class="btn btn-sm btn-primary">EDIT</a>
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                              @empty
-                                  <div class="alert alert-danger">
-                                      Data Lapangan belum Tersedia.
-                                  </div>
-                              @endforelse
-                            </tbody>
-                          </table>  
-                          {{ $employees->links() }}
+                                                    <td class="text-center">
+                                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');"
+                                                            action="{{ route('employees.destroy', $employee->id) }}"
+                                                            method="POST">
+                                                            <a href="{{ route('employees.update', $employee->id) }}"
+                                                                class="btn btn-sm btn-primary">EDIT</a>
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit"
+                                                                class="btn btn-sm btn-danger">HAPUS</button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            @empty
+                                                <div class="alert alert-danger">
+                                                    Data Lapangan belum Tersedia.
+                                                </div>
+                                            @endforelse
+                                        </tbody>
+                                    </table>
+                                    {{ $employees->links() }}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+                <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+                <script>
+                    //message with toastr
+                    @if (session()->has('success'))
+
+                        toastr.success('{{ session('success') }}', 'BERHASIL!');
+                    @elseif (session()->has('error'))
+
+                        toastr.error('{{ session('error') }}', 'GAGAL!');
+                    @endif
+                </script>
+
             </div>
+            <!-- main-panel ends -->
         </div>
-    </div>
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
-    <script>
-        //message with toastr
-        @if(session()->has('success'))
-        
-            toastr.success('{{ session('success') }}', 'BERHASIL!'); 
-
-        @elseif(session()->has('error'))
-
-            toastr.error('{{ session('error') }}', 'GAGAL!'); 
-            
-        @endif
-    </script>
-
-    </div>
-    <!-- main-panel ends -->
-    </div>
-    <!-- page-body-wrapper ends -->
+        <!-- page-body-wrapper ends -->
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->

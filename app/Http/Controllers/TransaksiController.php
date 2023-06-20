@@ -68,13 +68,13 @@ class TransaksiController extends Controller
         //create post
         
         $transaksi = Transaksi::create([
-            'namaMember' => $request->id_member,
-            'namaLapangan' => $request->id_lapangan,
-            'jamAwal' => $request->jamA,
-            'jamAkhir' => $request->jamB,
+            'namaMember' => $request->namaMember,
+            'namaLapangan' => $request->namaLapangan,
+            'jamAwal' => $request->jamAwal,
+            'jamAkhir' => $request->jamAkhir,
             'tanggal' => $request->tanggal,
-            'total_bayar' => $request->totalBayar,
-            'sisa_bayar' => $request->totalBayar,
+            'total_bayar' => $request->total_bayar,
+            'sisa_bayar' => $request->total_bayar,
             'bukti_bayar' => $image->hashName(),
         ]);
 
@@ -200,5 +200,6 @@ class TransaksiController extends Controller
 
         //return response
         return new TransaksiResource(true, 'Data Post Berhasil Dihapus!', null);
+        return view('/transaksi');
     }
 }

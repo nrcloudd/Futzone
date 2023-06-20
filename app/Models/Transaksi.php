@@ -10,8 +10,8 @@ class Transaksi extends Model
     use HasFactory;
     
     protected $fillable = [
-        'id_member',
-        'id_lapangan',
+        'namaMember',
+        'namaLapangan',
         'jamAwal',
         'jamAkhir',
         'tanggal',

@@ -48,7 +48,7 @@ class LapanganController extends Controller
             'namaLapangan' => 'required',
             'tipeLapangan' => 'required',
             'harga' => 'required',
-            //'image'     => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image'     => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
         ]);
 
         //check if validation fails
@@ -59,15 +59,15 @@ class LapanganController extends Controller
         //$tipel = TipeLapangan::Find($request->input('tipeLapangan'));
 
         //upload image
-        //$image = $request->file('image');
-        //$image->storeAs('public/posts', $image->hashName());
+        $image = $request->file('image');
+        $image->storeAs('public/posts', $image->hashName());
 
         //create post   
         $lapangan = Lapangan::create([
             'namaLapangan' => $request->namaLapangan,
             'tipeLapangan' => $request->tipeLapangan,
             'harga' => $request->harga,
-            //'image'     => $image->hashName(),
+            'image'     => $image->hashName(),
         ]);
 
         //return response

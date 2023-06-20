@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('namaMember');
             $table->string('namaLapangan');
-            $table->time('jamAwal');
-            $table->time('jamAkhir');
+            $table->string('jamAwal');
+            $table->string('jamAkhir');
             $table->date('tanggal');
             $table->integer('total_bayar');
             $table->integer('sisa_bayar');
