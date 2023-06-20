@@ -24,6 +24,7 @@ Route::group([
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/index', [AuthController::class, 'index']);
     Route::post('/show', [AuthController::class, 'show']);
+    Route::post('/update/{id}', [AuthController::class, 'show']);
     Route::post('/sewa', [AuthController::class, 'sewa']);
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/refresh', [AuthController::class, 'refresh']);
@@ -32,7 +33,7 @@ Route::group([
 
 Route::group([
     'middleware' => 'api',
-    'prefix' => 'field'
+    'prefix' => 'lapangan'
 ], function ($router) {
     Route::post('/index', [LapanganController::class, 'index']);
     Route::post('/store', [LapanganController::class, 'store']);
@@ -59,6 +60,7 @@ Route::group([
     Route::post('/index', [TransaksiController::class, 'index']);
     Route::post('/store', [TransaksiController::class, 'store']);
     Route::post('/show', [TransaksiController::class, 'show']);
+    Route::put('/update/{id}', [TransaksiController::class, 'update']); 
 });
 
 Route::post('/show', [ShowUserController::class, 'show']);
