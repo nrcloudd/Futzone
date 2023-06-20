@@ -87,23 +87,28 @@ class LapanganController extends Controller
         return new LapanganResource(true, 'Data Post Ditemukan!', $lapangan);
     }
 
-   public function show2(Request $request)
-{   $id = $request->input('id');
+    public function show2(Request $request)
+    {
+        $id = $request->input('id');
     
-    $jointipe = Lapangan::join('tipe_lapangan', 'lapangans.tipeLapangan', '=', 'tipe_lapangan.id')//Im not sure about this 
-            ->select('lapangans.*', 'tipe_lapangan.tipeLapangan as tipe', 'tipe_lapangan.harga as harga')  // neither this 
+        $jointipe = Lapangan::join('tipe_lapangan', 'lapangans.tipeLapangan', '=', 'tipe_lapangan.id')
+            ->select('lapangans.*', 'tipe_lapangan.tipeLapangan as tipe', 'tipe_lapangan.harga as harga')
             ->where('lapangans.id', $id)
             ->get();
     
-
+        if ($jointipe->isEmpty()) {
+            return new LapanganResource(false, 'Data Post Tidak Ditemukan!', null);
+        }
     
-    if ($jointipe->isEmpty()) {
-        return new LapanganResource(false, 'Data Post Tidak Ditemukan!', null);
+        $lapanganData = $jointipe[0];
+        $tipeLapangan = $lapanganData['tipe'];
+        $harga = $lapanganData['harga'];
+    
+        return new LapanganResource(true, 'Data Post Ditemukan!', [
+            $lapanganData
+        ]);
     }
     
-    return new LapanganResource(true, 'Data Post Ditemukan!', $jointipe);
-}
-
     
 
     /**
