@@ -27,4 +27,4 @@ Route::resource('/lapangan', \App\Http\Controllers\LapanganController::class);
 
 Route::resource('/transaksi', \App\Http\Controllers\TransaksiController::class);
 
-Route::resource('/member', \App\Http\Controllers\Controller::class);
+Route::resource('/member', \App\Http\Controllers\ShowUserController::class);

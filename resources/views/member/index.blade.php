@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.15/dist/sweetalert2.all.min.js"></script>
     <script src="sweetalert2.all.min.js"></script>
     <link rel="stylesheet" href="{{ asset('vendors/ti-icons/css/themify-icons.css') }}">
-    <link rel="stylesheet" href="{{ asset('vendors/base/vendor.bundle.base.css')}}">
+    <link rel="stylesheet" href="{{ asset('vendors/base/vendor.bundle.base.css') }}">
     <!-- endinject -->
     <!-- inject:css -->
     <link href="{{ asset('css/bootstrap/layout/style.css') }}" rel="stylesheet">
@@ -21,19 +21,21 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
-    <link href="{{ asset('css/bootstrap/images/logo1.png') }}"   rel="shortcut icon"/>
+    <link href="{{ asset('css/bootstrap/images/logo1.png') }}" rel="shortcut icon" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
 </head>
 
 <body>
+
     <div class="container-scroller">
         <!-- partial:../../partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo me-5" href="../../index.blade.php"><img src="{{ asset('css/bootstrap/images/logo.svg') }}"
-                        class="me-2" alt="logo" /></a>
-                <a class="navbar-brand brand-logo-mini" href="../../index.blade.php"><img src="{{ asset('css/bootstrap/images/logo-mini.svg') }}"
-                        alt="logo" /></a>
+                <a class="navbar-brand brand-logo me-5" href="../../index.blade.php"><img
+                        src="{{ asset('css/bootstrap/images/logo.svg') }}" class="me-2" alt="logo" /></a>
+                <a class="navbar-brand brand-logo-mini" href="../../index.blade.php"><img
+                        src="{{ asset('css/bootstrap/images/logo-mini.svg') }}" alt="logo" /></a>
+
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
                 <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -63,7 +65,8 @@
                             <p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
                             <a class="dropdown-item">
                                 <div class="item-thumbnail">
-                                    <img src="{{ asset('css/bootstrap/images/faces/face4.jpg') }}" alt="image" class="profile-pic">
+                                    <img src="{{ asset('css/bootstrap/images/faces/face4.jpg') }}" alt="image"
+                                        class="profile-pic">
                                 </div>
                                 <div class="item-content flex-grow">
                                     <h6 class="ellipsis font-weight-normal">David Grey
@@ -150,7 +153,8 @@
                         </div>
                     </li>
                     <li class="nav-item nav-profile dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                            id="profileDropdown">
                             <img src="{{ asset('css/bootstrap/images/faces/face28.jpg') }}" />
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
@@ -172,139 +176,104 @@
                 </button>
             </div>
         </nav>
-
-                            <!-- partial -->
+        <!-- partial -->
         <div class="container-fluid page-body-wrapper">
             <!-- partial:../../partials/_sidebar.html -->
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
-        <ul class="nav">
-          <li class="nav-item">
-            <a class="nav-link" href="/dashboard">
-              <i class="ti-shield menu-icon"></i>
-              <span class="menu-title">Dashboard</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/member">
-              <i class="ti-view-list-alt menu-icon"></i>
-              <span class="menu-title">Data Register</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/transaksi">
-              <i class="ti-view-list-alt menu-icon"></i>
-              <span class="menu-title">Data Transaksi</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/lapangan">
-              <i class="ti-view-list-alt menu-icon"></i>
-              <span class="menu-title">Data Lapangan</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/employee">
-              <i class="ti-view-list-alt menu-icon"></i>
-              <span class="menu-title">Data Karyawan</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-      <div class="container mt-5">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card border-0 shadow rounded">
-                    <div class="card-body">
-                        <h4 class="card-title">Tabel Member</h4>
-                        {{-- <a href="{{ route('employee.create') }}" class="btn btn-md btn-success mb-3">TAMBAH LAPANGAN</a> --}}
-                        <table class="table table-bordered">
-                            <thead>
-                              <tr>
-                                <th scope="col">Id Member</th>
-                                <th scope="col">Id Lapangan</th>
-                                <th scope="col">Jam Awal</th>
-                                <th scope="col">Jam Akhir</th>
-                                <th scope="col">Tanggal</th>
-                                <th scope="col">Total Total Bayar</th>
-                                <th scope="col">Bukti Transaksi</th>
-                                <th scope="col">Action</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              @forelse ($transaksis as $transaksi)
-                                <tr>
-                                    {{-- <td class="text-center">
-                                        <img src="{{ Storage::url('public/images/').$lapangan->image }}" class="rounded" style="width: 150px">
-                                    </td> --}}
-                                    <td>{{ $transaksi->namaMember }}</td>
-                                    <td>{{ $transaksi->namaLapangan }}</td>
-                                    <td>{{ $transaksi->jamAwal }}</td>
-                                    <td>{{ $transaksi->jamAkhir }}</td>
-                                    <td>{{ $transaksi->tanggal }}</td>
-                                    <td>{{ $transaksi->total_bayar }}</td>
-                                    <td>{{ $transaksi->bukti_bayar }}</td>
-                                    {{-- <td>{{ $transaksi->title }}</td>
-                                    <td>{!! $transaksi->content !!}</td> --}}
-                                    <td class="text-center">
-                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('transaksi.destroy', $transaksi->id) }}" method="POST">
-                                            <a href="{{ route('transaksi.update', $transaksi->id) }}" class="btn btn-sm btn-primary">EDIT</a>
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                              @empty
-                                  <div class="alert alert-danger">
-                                      Data Lapangan belum Tersedia.
-                                  </div>
-                              @endforelse
-                            </tbody>
-                          </table>  
-                          {{ $transaksis->links() }}
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/dashboard">
+                            <i class="ti-shield menu-icon"></i>
+                            <span class="menu-title">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/member">
+                            <i class="ti-view-list-alt menu-icon"></i>
+                            <span class="menu-title">Data Register</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/transaksi">
+                            <i class="ti-view-list-alt menu-icon"></i>
+                            <span class="menu-title">Data Transaksi</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/lapangan">
+                            <i class="ti-view-list-alt menu-icon"></i>
+                            <span class="menu-title">Data Lapangan</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/employee">
+                            <i class="ti-view-list-alt menu-icon"></i>
+                            <span class="menu-title">Data Karyawan</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- partial -->
+            <div class="container mt-5">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card border-0 shadow rounded">
+                            <div class="card-body">
+                                <table class="table table-bordered">
+                                    <h4>Tabel Member</h4>
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Nama Member</th>
+                                            <th scope="col">Email Member</th>
+                                            <th scope="col">Phone</th>
+                                            <th scope="col">Image</th>
+                                            <th scope="col">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($users as $user)
+                                            <tr>
+                                                {{-- <td class="text-center">
+                                                <img src="{{ Storage::url('public/posts/').$user->image }}" class="rounded" style="width: 150px">
+                                            </td> --}}
+                                                <td>{{ $user->namaMember }}</td>
+                                                <td>{{ $user->emailMember }}</td>
+                                                <td>{{ $user->phone }}</td>
+                                                <td>{{ $user->image }}</td>                                               
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                                {{ $users->links() }}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+            <script>
+                //message with toastr
+                @if (session()->has('success'))
+
+                    toastr.success('{{ session('success') }}', 'BERHASIL!');
+                @elseif (session()->has('error'))
+
+                    toastr.error('{{ session('error') }}', 'GAGAL!');
+                @endif
+            </script>
+            <!-- main-panel ends -->
         </div>
+        <!-- page-body-wrapper ends -->
     </div>
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
-    <script>
-        //message with toastr
-        @if(session()->has('success'))
-        
-            toastr.success('{{ session('success') }}', 'BERHASIL!'); 
-
-        @elseif(session()->has('error'))
-
-            toastr.error('{{ session('error') }}', 'GAGAL!'); 
-            
-        @endif
-    </script>
-
-    </div>
-    <!-- main-panel ends -->
-    </div>
-    <!-- page-body-wrapper ends -->
-    </div>
-    <!-- container-scroller -->
-    <!-- plugins:js -->
-    <!-- <script src="../../vendors/base/vendor.bundle.base.js"></script> -->
-    <!-- endinject -->
-    <!-- Plugin js for this page-->
-    <!-- End plugin js for this page-->
-    <!-- inject:js -->
-    <script src="{{ asset('css/bootstrap/js/off-canvas.js') }}"></script>
-    <script src="{{ asset('css/bootstrap/js/hoverable-collapse.js') }}"></script>
-    <script src="{{ asset('css/bootstrap/js/template.js') }}"></script>
-    <script src="{{ asset('css/bootstrap/js/todolist.js') }}"></script>
+    <script src="{{ asset('js/off-canvas.js') }}"></script>
+    <script src="{{ asset('js/hoverable-collapse.js') }}"></script>
+    <script src="{{ asset('js/template.js') }}"></script>
+    <script src="{{ asset('js/todolist.js') }}"></script>
     <script src="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- endinject -->
-    <!-- Custom js for this page-->
-    <!-- End custom js for this page-->
 </body>
 
 </html>

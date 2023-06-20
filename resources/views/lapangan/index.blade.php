@@ -214,154 +214,153 @@
                 </ul>
             </nav>
             <!-- partial -->
-            <div class="main-panel">
-                <div class="content-wrapper">
-                    <div class="grid-margin stretch-card">
-                        <div class="card">
+            <div class="container mt-5">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card border-0 shadow rounded">
                             <div class="card-body">
-                                <div class="d-sm-flex align-items-center justify-content-between mb-4">
-
-                                    <h4 class="card-title">Lapangan</h4>
-                                    <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                        data-bs-target="#modalTambah">
-                                        Tambah data
-                                    </button>
-
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="modalTambah" data-bs-backdrop="static"
-                                        data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
-                                        aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Form Data
-                                                        Lapangan</h1>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                                </div>
-                                                <form action="" method="POST">
-                                                    <div class="modal-body">
-                                                        <div class="mb-3">
-                                                            <label for="" class='form-label'>Nama Lapangan</label>
-                                                            <input type="text" placeholder="Masukkan Nama Lapangan"
-                                                                name="namaLapangan" class="form-control" required>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label for="" class='form-label'>Tipe Lapangan</label>
-                                                            <select name="tipeLapangan" id=""
-                                                                class='form-select'>
-                                                                <option value="reguler" selected>Reguler</option>
-                                                                <option value="jumbo">Jumbo</option>
-                                                                <option value="rumput">Rumput</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label for="" class='form-label'>Harga</label>
-                                                            <input type="text" placeholder="Masukkan Nama Lapangan"
-                                                                name="harga" class="form-control" required>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                                <label for="image" class="form-label">Gambar</label>
-                                                                <input name="image" type="file" class="form-control" id="image">
-                                                        </div>
-                                                    </div>
-                                                    <div class='modal-footer'>
-                                                        <button type="submit" class="btn btn-primary"
-                                                            name="bsimpan">Simpan</button>
-                                                        <button type="button" class="btn btn-danger"
-                                                            data-bs-dismiss="modal">Batal</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="table-responsive">
-                                    <table class="table table-hover" id="karyawan">
-                                        <thead>
+                                <a href="{{ route('lapangan.store') }}"
+                                    class="btn btn-md btn-success mb-3"data-bs-toggle="modal"
+                                    data-bs-target="#ModalAdd">TAMBAH POST</a>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Nama Lapangan</th>
+                                            <th scope="col">Tipe Lapangan</th>
+                                            <th scope="col">Harga</th>
+                                            <th scope="col">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($lapangans as $lapangan)
                                             <tr>
-                                                <th scope="col">Nama Lapangan</th>
-                                                <th scope="col">Tipe Lapangan</th>
-                                                <th scope="col">Price Siang</th>
-                                                <th scope="col">Price Malam</th>
-                                                <th scope="col">Action</th>
+                                                {{-- <td class="text-center">
+                                                <img src="{{ Storage::url('public/posts/').$lapangan->image }}" class="rounded" style="width: 150px">
+                                            </td> --}}
+                                                <td>{{ $lapangan->namaLapangan }}</td>
+                                                <td>{{ $lapangan->tipeLapangan }}</td>
+                                                <td>{{ $lapangan->harga }}</td>
+                                                <td class="text-center">
+                                                    <form onsubmit="return confirm('Apakah Anda Yakin ?');"
+                                                        action="{{ route('lapangan.destroy', $lapangan->id) }}" method="POST">
+                                                        <a href="#" class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                                                            data-bs-target="#ModalUpdate{{ $lapangan->id }}">EDIT</a>
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
+                                                    </form>
+                                                </td>                                                
                                             </tr>
-                                        </thead>
-                                        <tbody>
-                                            @forelse ($lapangans as $lapangan)
-                                                <tr>
-                                                    {{-- <td class="text-center">
-                                        <img src="{{ Storage::url('public/css/bootstrap/images/').$lapangan->images }}" class="rounded" style="width: 150px">
-                                    </td> --}}
-                                                    <td>{{ $lapangan->namaLapangan }}</td>
-                                                    <td>{{ $lapangan->tipeLapangan }}</td>
-                                                    <td>{{ $lapangan->priceSiang }}</td>
-                                                    <td>{{ $lapangan->priceMalam }}</td>
-                                                    {{-- <td>{{ $lapangan->title }}</td>
-                                    <td>{!! $lapangan->content !!}</td> --}}
-                                                    <td class="text-center">
-                                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                                            action="{{ route('lapangans.destroy', $lapangan->id) }}"
-                                                            method="POST">
-                                                            <a href="{{ route('lapangans.update', $lapangan->id) }}"
-                                                                class="btn btn-sm btn-primary">EDIT</a>
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit"
-                                                                class="btn btn-sm btn-danger">HAPUS</button>
-                                                        </form>
-                                                    </td>
-                                                </tr>
-                                            @empty
-                                                <div class="alert alert-danger">
-                                                    Data Lapangan belum Tersedia.
-                                                </div>
-                                            @endforelse
-                                        </tbody>
-                                    </table>
-                                    {{ $lapangans->links() }}
-                                </div>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                                {{ $lapangans->links() }}
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-                <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
-                <script>
-                    //message with toastr
-                    @if (session()->has('success'))
-
-                        toastr.success('{{ session('success') }}', 'BERHASIL!');
-                    @elseif (session()->has('error'))
-
-                        toastr.error('{{ session('error') }}', 'GAGAL!');
-                    @endif
-                </script>
-
             </div>
+            
+            <div class="modal fade" id="ModalAdd" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Modal Add</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form action="{{ route('lapangan.store')}}" method="post">
+                            @csrf
+                            @method('POST')
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1">Nama Lapangan</label>
+                                    <input name="namaLapangan" type="text" class="form-control"
+                                        id="exampleFormControlInput1" placeholder="name@example.com">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1">Tipe Lapangan</label>
+                                    <input name="tipeLapangan" type="text" class="form-control"
+                                        id="exampleFormControlInput1" placeholder="name@example.com">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1">Harga</label>
+                                    <input name="harga" type="text" class="form-control"
+                                        id="exampleFormControlInput1" placeholder="name@example.com">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-primary"
+                                    data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal Update -->
+@foreach($lapangans as $lapangan)
+<div class="modal fade" id="ModalUpdate{{ $lapangan->id }}" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createModalLabel">Edit Lapangan</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{ route('lapangan.update', ['lapangan' => $lapangan->id]) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="namaLapangan" class="form-label">Nama Lapangan</label>
+                        <input type="text" class="form-control" id="namaLapangan" name="namaLapangan" value="{{ $lapangan->namaLapangan }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="tipeLapangan" class="form-label">Tipe Lapangan</label>
+                        <input type="text" class="form-control" id="tipeLapangan" name="tipeLapangan" value="{{ $lapangan->tipeLapangan }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="harga" class="form-label">Harga</label>
+                        <input type="text" class="form-control" id="harga" name="harga" value="{{ $lapangan->harga }}" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endforeach
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+            <script>
+                //message with toastr
+                @if (session()->has('success'))
+
+                    toastr.success('{{ session('success') }}', 'BERHASIL!');
+                @elseif (session()->has('error'))
+
+                    toastr.error('{{ session('error') }}', 'GAGAL!');
+                @endif
+            </script>
             <!-- main-panel ends -->
         </div>
         <!-- page-body-wrapper ends -->
     </div>
-    <!-- container-scroller -->
-    <!-- plugins:js -->
-    <!-- <script src="../../vendors/base/vendor.bundle.base.js"></script> -->
-    <!-- endinject -->
-    <!-- Plugin js for this page-->
-    <!-- End plugin js for this page-->
-    <!-- inject:js -->
     <script src="{{ asset('js/off-canvas.js') }}"></script>
     <script src="{{ asset('js/hoverable-collapse.js') }}"></script>
     <script src="{{ asset('js/template.js') }}"></script>
     <script src="{{ asset('js/todolist.js') }}"></script>
     <script src="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- endinject -->
-    <!-- Custom js for this page-->
-    <!-- End custom js for this page-->
 </body>
 
 </html>

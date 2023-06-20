@@ -26,6 +26,7 @@
 </head>
 
 <body>
+
     <div class="container-scroller">
         <!-- partial:../../partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
@@ -34,6 +35,7 @@
                         src="{{ asset('css/bootstrap/images/logo.svg') }}" class="me-2" alt="logo" /></a>
                 <a class="navbar-brand brand-logo-mini" href="../../index.blade.php"><img
                         src="{{ asset('css/bootstrap/images/logo-mini.svg') }}" alt="logo" /></a>
+
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
                 <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -212,154 +214,162 @@
                 </ul>
             </nav>
             <!-- partial -->
-            <div class="main-panel">
-                <div class="content-wrapper">
-                    <div class="grid-margin stretch-card">
-                        <div class="card">
+            <div class="container mt-5">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card border-0 shadow rounded">
                             <div class="card-body">
-                                <div class="d-sm-flex align-items-center justify-content-between mb-4">
-
-                                    <h4 class="card-title">Tabel Employee</h4>
-                                    <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                        data-bs-target="#modalTambah">
-                                        Tambah data
-                                    </button>
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="modalTambah" data-bs-backdrop="static"
-                                        data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
-                                        aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Form
-                                                        Employee</h1>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                                </div>
-                                                <form action="" method="POST">
-                                                    <div class="modal-body">
-                                                        <div class="mb-3">
-                                                            <label for="" class='form-label'>Nama Employee</label>
-                                                            <input type="text" placeholder="Masukkan nama"
-                                                                name="namaEmploy" class="form-control" required>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label for="" class='form-label'>Email</label>
-                                                            <input type="text" placeholder="Masukkan Nama Lapangan"
-                                                                name="emailEmploy" class="form-control" required>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label for="" class='form-label'>Password</label>
-                                                            <input type="text" placeholder="Masukkan Password"
-                                                                name="passEmploy" class="form-control" required>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label for="" class='form-label'>Level</label>
-                                                            <input type="text" placeholder="Masukkan waktu selesai"
-                                                                name="level" class="form-control" required>
-                                                        </div>
-                                                    </div>
-                                                    <div class='modal-footer'>
-                                                        <button type="submit" class="btn btn-primary"
-                                                            name="bsimpan">Simpan</button>
-                                                        <button type="button" class="btn btn-danger"
-                                                            data-bs-dismiss="modal">Batal</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <p class="card-description">
-
-                                </p>
-                                <div class="table-responsive">
-                                    <table class="table table-hover" id="karyawan">
-                                        <thead>
+                                <a href="{{ route('employee.store') }}"
+                                    class="btn btn-md btn-success mb-3"data-bs-toggle="modal"
+                                    data-bs-target="#ModalAdd">TAMBAH POST</a>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Nama Employee</th>
+                                            <th scope="col">Email Employee</th>
+                                            <th scope="col">Level</th>
+                                            <th scope="col">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($employees as $employ)
                                             <tr>
-                                                <th scope="col">Nama Employee</th>
-                                                <th scope="col">Email Employee</th>
-                                                <th scope="col">Password Employee</th>
-                                                <th scope="col">Level</th>
-                                                <th scope="col">Action</th>
+                                                {{-- <td class="text-center">
+                                                <img src="{{ Storage::url('public/posts/').$employ->image }}" class="rounded" style="width: 150px">
+                                            </td> --}}
+                                                <td>{{ $employ->namaEmploy }}</td>
+                                                <td>{{ $employ->emailEmploy }}</td>
+                                                <td>{{ $employ->level }}</td>
+                                                <td class="text-center">
+                                                    <form onsubmit="return confirm('Apakah Anda Yakin ?');"
+                                                        action="{{ route('lapangan.destroy', $employ->id) }}" method="POST">
+                                                        <a href="#" class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                                                            data-bs-target="#ModalUpdate{{ $employ->id }}">EDIT</a>
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
+                                                    </form>
+                                                </td>                                                
                                             </tr>
-                                        </thead>
-                                        <tbody>
-                                            @forelse ($employees as $employee)
-                                                <tr>
-                                                    {{-- <td class="text-center">
-                                        <img src="{{ Storage::url('public/images/').$lapangan->image }}" class="rounded" style="width: 150px">
-                                    </td> --}}
-                                                    <td>{{ $employee->namaEmploy }}</td>
-                                                    <td>{{ $employee->emailEmploy }}</td>
-                                                    <td>{{ $employee->passEmploy }}</td>
-                                                    <td>{{ $employee->level }}</td>
-                                                    {{-- <td>{{ $employee->title }}</td>
-                                    <td>{!! $employee->content !!}</td> --}}
-                                                    <td class="text-center">
-                                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                                            action="{{ route('employees.destroy', $employee->id) }}"
-                                                            method="POST">
-                                                            <a href="{{ route('employees.update', $employee->id) }}"
-                                                                class="btn btn-sm btn-primary">EDIT</a>
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit"
-                                                                class="btn btn-sm btn-danger">HAPUS</button>
-                                                        </form>
-                                                    </td>
-                                                </tr>
-                                            @empty
-                                                <div class="alert alert-danger">
-                                                    Data Lapangan belum Tersedia.
-                                                </div>
-                                            @endforelse
-                                        </tbody>
-                                    </table>
-                                    {{ $employees->links() }}
-                                </div>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                                {{ $employees->links() }}
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-                <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
-                <script>
-                    //message with toastr
-                    @if (session()->has('success'))
-
-                        toastr.success('{{ session('success') }}', 'BERHASIL!');
-                    @elseif (session()->has('error'))
-
-                        toastr.error('{{ session('error') }}', 'GAGAL!');
-                    @endif
-                </script>
-
             </div>
+            
+            <div class="modal fade" id="ModalAdd" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Modal Add</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form action="{{ route('employee.store')}}" method="post">
+                            @csrf
+                            @method('POST')
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1">Nama Employee</label>
+                                    <input name="namaEmploy" type="text" class="form-control"
+                                        id="namaEmploy" placeholder="Masukan Nama">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1">Email Employee</label>
+                                    <input name="emailEmploy" type="text" class="form-control"
+                                        id="emailEmploy" placeholder="Masukan Email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1">Password Employee</label>
+                                    <input name="passEmploy" type="password" class="form-control"
+                                        id="passEmploy" placeholder="Masukan Password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1">Level</label>
+                                    <input name="level" type="text" class="form-control"
+                                        id="level" placeholder="Level">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-primary"
+                                    data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal Update -->
+@foreach($employees as $employ)
+<div class="modal fade" id="ModalUpdate{{ $employ->id }}" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createModalLabel">Edit Lapangan</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{ route('employee.update', ['employee' => $employ->id]) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="namaEmploy" class="form-label">Nama Employee</label>
+                        <input type="text" class="form-control" id="namaEmploy" name="namaEmploy" value="{{ $employ->namaEmploy }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="emailEmploy" class="form-label">Email Employee</label>
+                        <input type="text" class="form-control" id="emailEmploy" name="emailEmploy" value="{{ $employ->emailEmploy }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="passEmploy" class="form-label">Password Employee</label>
+                        <input type="password" class="form-control" id="passEmploy" name="passEmploy" value="{{ $employ->passEmploy }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="level" class="form-label">Level</label>
+                        <input type="text" class="form-control" id="level" name="level" value="{{ $employ->level }}" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endforeach
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+            <script>
+                //message with toastr
+                @if (session()->has('success'))
+
+                    toastr.success('{{ session('success') }}', 'BERHASIL!');
+                @elseif (session()->has('error'))
+
+                    toastr.error('{{ session('error') }}', 'GAGAL!');
+                @endif
+            </script>
             <!-- main-panel ends -->
         </div>
         <!-- page-body-wrapper ends -->
     </div>
-    <!-- container-scroller -->
-    <!-- plugins:js -->
-    <!-- <script src="../../vendors/base/vendor.bundle.base.js"></script> -->
-    <!-- endinject -->
-    <!-- Plugin js for this page-->
-    <!-- End plugin js for this page-->
-    <!-- inject:js -->
     <script src="{{ asset('js/off-canvas.js') }}"></script>
     <script src="{{ asset('js/hoverable-collapse.js') }}"></script>
     <script src="{{ asset('js/template.js') }}"></script>
     <script src="{{ asset('js/todolist.js') }}"></script>
     <script src="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- endinject -->
-    <!-- Custom js for this page-->
-    <!-- End custom js for this page-->
 </body>
 
 </html>
