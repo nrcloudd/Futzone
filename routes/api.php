@@ -5,8 +5,12 @@ use App\Http\Controllers\TipeLapanganController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\cobaController;
+use App\Http\Controllers\EditController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\ShowUserController;
+use App\Http\Controllers\UpdateProfileController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,6 +21,7 @@ use App\Http\Controllers\ShowUserController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::post('/updateprofile', [UpdateProfileController::class, 'update']);
 Route::group([
     'middleware' => 'api',
     'prefix' => 'auth'
@@ -25,7 +30,7 @@ Route::group([
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/index', [AuthController::class, 'index']);
     Route::post('/show', [AuthController::class, 'show']);
-    Route::put('/update', [AuthController::class, 'show']);
+    Route::post('/update', [AuthController::class, 'update']);
     Route::post('/sewa', [AuthController::class, 'sewa']);
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/refresh', [AuthController::class, 'refresh']);

@@ -7,7 +7,7 @@ use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class cobaController extends Controller
+class UpdateProfileController extends Controller
 {
     public function update(Request $request)
     {
